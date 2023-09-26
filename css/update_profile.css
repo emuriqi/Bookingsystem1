@@ -1,0 +1,113 @@
+.container{
+    min-height:100vh;
+    background-color:var(--light-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+ }
+ 
+ .container .content{
+    padding:20px;
+    background-color:var(--box-shadow);
+    text-align:center;
+    width:400px;
+    border-radius:5px;
+ }
+ 
+ .container .content img{
+    height: 150px;
+    width:150px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:5px;
+ } 
+ 
+ .container .content h3{
+    margin:5px 0;
+    font-size:20px;
+    color:var(--black);
+ }
+ 
+ .container .content p{
+    margin-top:20px;
+    color:var(--black);
+    font-size:20px;
+ }
+ 
+ .container .content p a{
+    color:var(--red);
+ }
+ 
+ .container .content p a:hover{
+    text-decoration:underline;
+ }
+ 
+ .update_profile{
+    min-height:100vh;
+    background-color: var(--light-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+ }
+ 
+ .update_profile form{
+    padding:20px;
+    background-color:var(--white);
+    box-shadow:var(--box-shadow);
+    text-align:center;
+    width:700px;
+    text-align:center;
+    border-radius:5px;
+ }
+ 
+ .update_profile form img{
+    height:200px;
+    width:200p;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:5px;
+ }
+ 
+ .update_profile form .flex{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    margin-bottom:20px;
+    gap:15px;
+ }
+ 
+ .update_profile form .flex .inputbox{
+    width:49%;
+ }
+ 
+ .update_profile form .flex .inputbox span{
+    text-align:left;
+    display:block;
+    margin-top:15px;
+    font-size:17px;
+    color:var(-black)
+ }
+ 
+ .update_profile form .flex .inputbox .box{
+    width:100%;
+    border-radius:5px;
+    background-color:var(--light-bg);
+    padding:12px 14px; 
+    font-size:17px;
+    color:var(--black);
+    margin-top:10px;
+ }
+ 
+ @media (max-width:650px){
+    .update_profile form .flex{
+       flex-wrap:wrap;
+       gap:0;
+    }
+ 
+ }
+ 
+ .update_profile form .flex .inputbox .box{
+    width:100%;
+ }
