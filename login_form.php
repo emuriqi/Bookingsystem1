@@ -20,6 +20,8 @@ if(isset($_POST['submit'])){
 
       $row = mysqli_fetch_array($result);
 
+      $_SESSION['id'] = $row['id'];
+
       if($row['user_type'] == 'admin'){
 
          $_SESSION['admin_name'] = $row['name'];
