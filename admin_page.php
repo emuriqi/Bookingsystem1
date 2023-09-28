@@ -36,11 +36,12 @@ if(!isset($_SESSION['admin_name'])){
 <div class="container">
 
    <div class="content">
-      <h3>hi, <span>admin</span></h3>
-      <h1>welcome <span><?php echo $_SESSION['admin_name'] ?></span></h1>
-      <p>this is an admin page</p>
-      <a href="update_profile.php" class="btn">Oppdater Profil</a>
-      <a href="logout.php" class="btn">logout</a>
+      <h1>Hei</h1>
+      <h3>Velkommen <span><?php echo $_SESSION['admin_name'] ?></span></h3>
+      <p>Logget inn som hjelpelærer</p>
+      <a href="oversikt_admin.php" class="btn">Dine timer </a>
+      <a href="register_form.php" class="btn">Sett inn tiljenglighet</a>
+     
    </div>
 
 </div>

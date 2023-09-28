@@ -1,0 +1,39 @@
+/* CSS for header */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navbar-logo {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar-menu-item {
+    display: inline;
+    margin: 0 10px;
+}
+
+/* CSS for table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
