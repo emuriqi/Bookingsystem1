@@ -23,16 +23,23 @@ if(!isset($_SESSION['user_name'])){
 
 </head>
 <body>
-   
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header>   
+
 <div class="container">
 
    <div class="content">
       <h3>hi, <span>user</span></h3>
       <h1>welcome <span><?php echo $_SESSION['user_name'] ?></span></h1>
       <p>this is an user page</p>
-      <a href="login_form.php" class="btn">login</a>
-      <a href="register_form.php" class="btn">register</a>
-      <a href="logout.php" class="btn">logout</a>
+      <a href="login_form.php" class="btn">Book Time</a>
    </div>
 
 </div>

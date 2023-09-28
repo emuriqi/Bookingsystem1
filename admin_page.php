@@ -40,7 +40,7 @@ if(!isset($_SESSION['admin_name'])){
       <h3>Velkommen <span><?php echo $_SESSION['admin_name'] ?></span></h3>
       <p>Logget inn som hjelpelærer</p>
       <a href="oversikt_admin.php" class="btn">Dine timer </a>
-      <a href="register_form.php" class="btn">Sett inn tiljenglighet</a>
+      <a href="admin_settilgjengelighet.php" class="btn">Sett inn tiljenglighet</a>
      
    </div>
 
