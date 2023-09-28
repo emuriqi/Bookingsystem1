@@ -1,5 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+/* Add this CSS code to your existing stylesheet (css/style.css) */
+
+/* Navbar styles */
+.navbar {
+   background-color: #333;
+   padding: 10px 0;
+}
+
+.navbar-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+}
+
+.navbar-logo {
+   text-decoration: none;
+   color: white;
+   font-size: 24px;
+   font-weight: bold;
+}
+
+.navbar-menu {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.navbar-menu-item {
+   display: inline-block;
+   margin-right: 20px;
+}
+
+.navbar-menu-item a {
+   text-decoration: none;
+   color: white;
+   font-size: 18px;
+}
+
+.navbar-menu-item a:hover {
+   color: crimson;
+}
+
 *{
    font-family: 'Poppins', sans-serif;
    margin:0; padding:0;

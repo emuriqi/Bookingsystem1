@@ -23,7 +23,16 @@ if(!isset($_SESSION['admin_name'])){
 
 </head>
 <body>
-   
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header>   
+
 <div class="container">
 
    <div class="content">

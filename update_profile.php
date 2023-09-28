@@ -61,6 +61,15 @@ if(isset($_POST['update_profile'])){
 
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header>  
    
 <div class="update-profile">
 
@@ -104,7 +113,7 @@ if(isset($_POST['update_profile'])){
          </div>
       </div>
       <input type="submit" value="update profile" name="update_profile" class="btn">
-      <a href="home.php" class="delete-btn">go back</a>
+      <a href="admin_page.php" class="delete-btn">go back</a>
    </form>
 
 </div>
