@@ -41,3 +41,52 @@ td:hover {
 h2 {
     text-align: center;
 }
+
+/* Stil for kalendertabellen */
+table.table-bordered {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #000000;
+    margin: 20px auto;
+}
+
+table.table-bordered th.header {
+    background-color: #000000;
+}
+
+table.table-bordered th,
+table.table-bordered td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+table.table-bordered td.today {
+    background-color: #ffc;
+}
+
+/* Stil for navigasjonsknapper */
+a.btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+a.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+a.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+a.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+a.btn-xs {
+    font-size: 12px;
+}
