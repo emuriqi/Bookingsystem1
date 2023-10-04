@@ -1,5 +1,20 @@
 <?php
 function build_calendar($month, $year) {
+
+    $mysqli = new mysqli('localhost', 'root', '','user_db');
+    $stmt = $mysqli->prepare("select * from bookings where MONTH(date) = ? AND YEAR(date)=?");
+    $stmt->bind_param('ss',$month,$year);
+    $bookings = array();
+    if($stmt->execute()){
+      $result = $stmt->get_result();
+      if($result->num_rows>0){
+        while($row = $result->fetch_assoc()){
+          $bookings[] = $row['date'];
+        }
+        $stmt->close();
+      }
+    }
+
     $daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
     $firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
@@ -48,7 +63,7 @@ function build_calendar($month, $year) {
         $today = $date == date('Y-m-d') ? "today" : "";
         if ($date < date('Y-m-d')) {
             $calendar .= "<td><h4>$currentDay</h4> <button class='btn btn-danger btn-xs'>N/A</button></td>";
-        } else {
+        }else {
           $calendar .= "<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=$date' class='btn btn-success btn-xs'>Book</a>";
         }
 
