@@ -91,9 +91,22 @@ function build_calendar($month, $year) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/calendar.css"> <!-- Husk å inkludere CSS-stilen din -->
-    <title>Calendar</title>
+    <title>Calendar</title>  
+
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header> 
+<div class="container">
+             <a href="admin_page.php" class="btn btn-primary">Tilbake</a>
+</div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -116,7 +129,9 @@ function build_calendar($month, $year) {
                     <a class="btn btn-primary" href="?month=<?php echo date("m", mktime(0, 0, 0, $month + 1, 1, $year)); ?>&year=<?php echo date('Y', mktime(0, 0, 0, $month + 1, 1, $year)); ?>">Next Month</a>
                     
             </div>
-        </div>
     </div>
+    <div class="container">
+             <a href="admin_page.php" class="btn btn-primary">Tilbake</a>
+        </div>
 </body>
 </html>
