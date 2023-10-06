@@ -1,8 +1,8 @@
 <?php
-// Initialize variables
 $date = "";
+$hjelpelærere_id = "";
 $msg = "";
-$bookings = array(); // Initialiser bookings som en tom array
+$bookings = array();
 
 $mysqli = new mysqli('localhost', 'root', '', 'user_db');
 
@@ -10,10 +10,12 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-if (isset($_GET['date'])) {
+if (isset($_GET['date']) && isset($_GET['hjelpelærere_id'])) {
     $date = $_GET['date'];
-    $stmt = $mysqli->prepare("SELECT * FROM bookings WHERE date = ?");
-    $stmt->bind_param('s', $date);
+    $hjelpelærere_id = $_GET['hjelpelærere_id'];
+
+    $stmt = $mysqli->prepare("SELECT * FROM bookings WHERE date = ? AND hjelpelærere_id = ?");
+    $stmt->bind_param('si', $date, $hjelpelærere_id);
 
     if ($stmt->execute()) {
         $result = $stmt->get_result();
@@ -30,19 +32,27 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $timeslot = $_POST['timeslot'];
+    $hjelpelærere_id = $_POST['hjelpelærer_id'];
 
-    // Sjekk om tidspunktet allerede er booket
-    if (in_array($timeslot, $bookings)) {
+    echo "hjelpelærere_id: $hjelpelærere_id"; // Debugging statement
+
+    if (!$hjelpelærere_id) {
+        $msg = "<div class='alert alert-danger'>Teacher Assistant ID is missing</div>";
+    } elseif (in_array($timeslot, $bookings)) {
         $msg = "<div class='alert alert-danger'>Already Booked</div>";
     } else {
-        $stmt = $mysqli->prepare("INSERT INTO bookings (name, timeslot, email, date) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param('ssss', $name, $timeslot, $email, $date);
+        $stmt = $mysqli->prepare("INSERT INTO bookings (name, timeslot, email, date, hjelpelærere_id) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param('ssssi', $name, $timeslot, $email, $date, $hjelpelærere_id);
 
         if ($stmt->execute()) {
             $msg = "<div class='alert alert-success'>Booking Successful</div>";
             $bookings[] = $timeslot;
         } else {
-            $msg = "<div class='alert alert-danger'>Booking Failed</div>";
+            if ($stmt->errno == 1452) {  // Error code for foreign key constraint fail
+                $msg = "<div class='alert alert-danger'>Invalid Teacher Assistant ID</div>";
+            } else {
+                $msg = "<div class='alert alert-danger'>Booking Failed: " . $stmt->error . "</div>";
+            }
         }
 
         $stmt->close();
@@ -135,6 +145,7 @@ function timeslots($duration, $cleanup, $start, $end) {
                                     <label for="email">Email</label>
                                     <input required type="text" name="email" id="email" class="form-control">
                                 </div>
+                                <input type="hidden" name="hjelpelærer_id" value="<?php echo $hjelpelærere_id; ?>">
                                 <div class="form-group pull-right">
                                     <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                 </div>
@@ -149,7 +160,6 @@ function timeslots($duration, $cleanup, $start, $end) {
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
