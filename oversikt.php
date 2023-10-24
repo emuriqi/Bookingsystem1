@@ -64,7 +64,7 @@ include 'config.php';
                     <td>$date</td>
                     <td>
                     <a class='btn btn-primary btn-sm' href='redigerBooking.php?id=$id'>Edit</a>
-                    <a class='btn btn-primary btn-sm' href='delete-innkjop.php?id=$id'>Delete</a>
+                    <a class='btn btn-primary btn-sm' href='deleteBooking.php?id=$id'>Delete</a>
                 </td>
                 </tr>
                 ";
