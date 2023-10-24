@@ -1,13 +1,13 @@
 <?php
 
-@include 'config.php';
+@include 'config.php';  // Inkluderer konfigurasjonsfilen som sannsynligvis inneholder databasetilkoblingsinnstillinger
 
-session_start();
+session_start();  // Starter en ny sesjon eller fortsetter den eksisterende
 
+// Hvis det ikke er satt noen sesjonsvariabel for admin_name, blir brukeren omdirigert til innloggingssiden
 if(!isset($_SESSION['admin_name'])){
    header('location:login_form.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +39,8 @@ if(!isset($_SESSION['admin_name'])){
       <h1>Hei</h1>
       <h3>Velkommen <span><?php echo $_SESSION['admin_name'] ?></span></h3>
       <p>Logget inn som hjelpelærer</p>
-      <a href="oversikt_admin.php" class="btn">Dine timer </a>
-      <a href="admin_settilgjengelighet.php" class="btn">Sett inn tiljenglighet</a>
+      <a href="calendar.php" class="btn">Dine timer </a>
+      <a href="set_availability.php" class="btn">Sett inn tiljenglighet</a>
      
    </div>
 

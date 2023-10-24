@@ -173,4 +173,3 @@ function timeslots($duration, $cleanup, $start, $end) {
     </script>
 </body>
 </html>
-
