@@ -41,6 +41,7 @@ if(!isset($_SESSION['admin_name'])){
       <p>Logget inn som hjelpelærer</p>
       <a href="calendar.php" class="btn">Dine timer </a>
       <a href="set_availability.php" class="btn">Sett inn tiljenglighet</a>
+      <a href="chatpage.php" class="btn">chat</a>
      
    </div>
 
