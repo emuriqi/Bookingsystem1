@@ -1,8 +1,10 @@
 <?php
+session_start();
 
+include 'language_setup.php';
 @include 'config.php';  // Inkluderer konfigurasjonsfilen som sannsynligvis inneholder databasetilkoblingsinnstillinger
 
-session_start();  // Starter en ny sesjon eller fortsetter den eksisterende
+ // Starter en ny sesjon eller fortsetter den eksisterende
 
 // Hvis det ikke er satt noen sesjonsvariabel for admin_name, blir brukeren omdirigert til innloggingssiden
 if(!isset($_SESSION['admin_name'])){
@@ -27,8 +29,9 @@ if(!isset($_SESSION['admin_name'])){
     <div class="navbar-container">
         <a href="home.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
-            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+            <li class="navbar-menu-item"><a href="update_profile.php"> <?php echo $lang['update_profile']; ?>
+            </a></li>
+            <li class="navbar-menu-item"><a href="logout.php"><?php echo $lang['logout']; ?></a></li>
         </ul>
     </div>
 </header>   
@@ -36,15 +39,18 @@ if(!isset($_SESSION['admin_name'])){
 <div class="container">
 
    <div class="content">
-      <h1>Hei</h1>
-      <h3>Velkommen <span><?php echo $_SESSION['admin_name'] ?></span></h3>
-      <p>Logget inn som hjelpelærer</p>
-      <a href="calendar.php" class="btn">Dine timer </a>
-      <a href="set_availability.php" class="btn">Sett inn tiljenglighet</a>
-      <a href="chatpage.php" class="btn">chat</a>
+      <h1><?php echo $lang['hello']; ?>:</h1>
+      <h3><?php echo $lang['welcome']; ?>: <span><?php echo $_SESSION['admin_name'] ?></span></h3>
+      <p><?php echo $lang['logged_as_ta']; ?></p>
+      <a href="calendar.php" class="btn"><?php echo $lang['your_appointments']; ?></a>
+      <a href="set_availability.php" class="btn"><?php echo $lang['set_availability']; ?></a>
+      <a href="chatpage.php" class="btn"><?php echo $lang['chat']; ?></a>
      
    </div>
+</div>
 
+<div>
+<a href="?lang=no">Norsk</a> | <a href="?lang=en">English</a>
 </div>
 
 </body>

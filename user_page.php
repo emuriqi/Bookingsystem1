@@ -44,7 +44,7 @@ if(!isset($_SESSION['user_name'])){
       <h1>welcome <span><?php echo $_SESSION['user_name'] ?></span></h1>
       <!-- PHP-koden ovenfor trekker brukernavnet fra sesjonen og viser det på siden. -->
       <p>this is an user page</p>
-      <a href="login_form.php" class="btn">Book Time</a>
+      <a href="calendar.php" class="btn">Book Time</a>
       <!-- Lenken ovenfor skal sannsynligvis lede til en side hvor brukeren kan booke tid, men merkelig nok fører den til innloggingssiden. -->
    </div>
 </div>

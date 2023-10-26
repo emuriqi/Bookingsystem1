@@ -96,6 +96,15 @@ function timeslots($duration, $cleanup, $start, $end) {
     <title>Book for date</title>
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header>  
     <div class="container">
         <h1 class="text-center">Book for date: <?php echo date('d/m/Y', strtotime($date)); ?></h1>
         <div class="row">

@@ -1,4 +1,49 @@
 /* Generell stil for hele siden */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between; /* Distribute child elements */
+    align-items: center; /* Align vertically */
+}
+
+.navbar-container {
+    width: 90%; /* You can adjust this */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* Distribute child elements */
+    align-items: center;
+}
+
+.navbar-logo {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Align vertically */
+}
+
+.navbar-menu-item {
+    margin: 0 10px;
+}
+
+.navbar-menu-item a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px; /* Add some padding */
+}
+
+.navbar-menu-item a:hover {
+    background-color: #555; /* Add a hover effect */
+    border-radius: 5px;
+}
+
 body {
     background-color: #f8f8f8;
     font-family: Arial, sans-serif;

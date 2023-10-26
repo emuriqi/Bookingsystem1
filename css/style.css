@@ -51,6 +51,33 @@
    text-decoration: none;
 }
 
+
+div {
+   font-family: Arial, sans-serif; /* Use any preferred font-family */
+   padding: 10px;
+   background-color: #f9f9f9; /* Light grey background */
+   border-radius: 5px; /* Rounded corners */
+   display: inline-block; /* Make the div size adapt to its content */
+   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* A subtle shadow */
+}
+
+div a {
+   text-decoration: none; /* Removes the underline */
+   color: #333; /* Dark grey color */
+   padding: 0 10px; /* Spacing around the links */
+}
+
+div a:hover {
+   color: #007BFF; /* Change color when hovering */
+}
+
+div a:not(:last-child)::after {
+   content: "|"; /* Adds the pipe separator */
+   padding: 0 10px; /* Spacing around the separator */
+   color: #888; /* Grey color for the separator */
+}
+
+
 .container{
    min-height: 100vh;
    display: flex;

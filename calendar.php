@@ -98,6 +98,16 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
     <!-- Insert your CSS and JavaScript links here -->
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+        </ul>
+    </div>
+</header>   
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
