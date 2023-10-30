@@ -1,5 +1,5 @@
 <?php
-
+include 'language_setup.php';
 @include 'config.php';  // Inkluderer konfigurasjonsfilen som antakelig inneholder databasetilkoblingsinnstillingene.
 
 if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
@@ -39,14 +39,14 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>register form</title>
-   <link rel="stylesheet" href="css/style.css">  // Lenker til det eksterne CSS-stilarket.
+   <link rel="stylesheet" href="css/style.css">  <!--Lenker til det eksterne CSS-stilarket.-->
 </head>
 <body>
    
 <div class="form-container">
 
    <form action="" method="post">
-      <h3>register now</h3>
+      <h3><?php echo $lang['register_now']; ?></h3>
       <?php
       // Viser eventuelle feilmeldinger.
       if(isset($error)){
@@ -56,18 +56,18 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
       };
       ?>
       <!-- Inputfelter for navn, e-post, passord, bekreft passord og brukertype -->
-      <input type="text" name="name" required placeholder="enter your name">
-      <input type="email" name="email" required placeholder="enter your email">
-      <input type="password" name="password" required placeholder="enter your password">
-      <input type="password" name="cpassword" required placeholder="confirm your password">
+      <input type="text" name="name" required placeholder="<?php echo $lang['enter_name']; ?>">
+      <input type="email" name="email" required placeholder="<?php echo $lang['enter_email']; ?>">
+      <input type="password" name="password" required placeholder="<?php echo $lang['enter_password']; ?>">
+      <input type="password" name="cpassword" required placeholder="<?php echo $lang['confirm_password']; ?>">
       <select name="user_type">
-         <option value="user">user</option>
-         <option value="admin">admin</option>
+         <option value="user"><?php echo $lang['user']; ?> </option>
+         <option value="admin"><?php echo $lang['admin']; ?></option>
       </select>
       <!-- Registreringsknapp -->
       <input type="submit" name="submit" value="register now" class="form-btn">
       <!-- Lenke til innloggingssiden for eksisterende brukere -->
-      <p>already have an account? <a href="login_form.php">login now</a></p>
+      <p><?php echo $lang['account_exists']; ?> <a href="login_form.php"><?php echo $lang['login_now']; ?></a></p>
    </form>
 
 </div>

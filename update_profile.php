@@ -1,5 +1,6 @@
 <?php
 // Inkluderer konfigurasjonsfilen og starter sesjonen.
+include 'language_setup.php';
 include 'config.php';
 session_start();
 $id = $_SESSION['id'];  // Henter brukerens ID fra sesjonen.

@@ -1,5 +1,8 @@
 <?php
+
+session_start();
 include 'config.php';
+
 
 $id = "";
 $date = "";
@@ -58,8 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $timeslot = $row['timeslot'];
     $email = $row["email"];
 
-    $stmt = $conn->prepare("SELECT timeslot FROM bookings WHERE date = ?");
-    $stmt->bind_param("s", $date);
+    $stmt = $conn->prepare("SELECT * FROM bookings WHERE id=?");
+$stmt->bind_param("s", $id);
+
+    
     $stmt->execute();
     $bookedTimeslots = $stmt->get_result();
     $bookings = array();
@@ -111,7 +116,7 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
     <div class="navbar-container">
         <a href="home.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
         </ul>
     </div>

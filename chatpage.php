@@ -13,6 +13,14 @@
 		$query = mysqli_query($conn,$sql);
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
 <div class="container">
   <center><h2>Welcome</h2>
 	<label>Join the chat</label>
@@ -54,11 +62,12 @@
         <textarea name="msg" class="form-control" placeholder="Type your message here..."></textarea>
       </div>
 	         
-      <div class="col-sm-2">
-        <button type="submit" class="btn btn-primary">Send</button>
-      </div>
+      
 
     </div>
+	<div class="col-sm-2">
+        <button type="submit" class="btn btn-primary">Send</button>
+      </div>
   </form>
 </div>
 

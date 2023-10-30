@@ -1,8 +1,8 @@
 <?php
-
+include 'language_setup.php';
 @include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger eller annen konfigurasjon.
 
-session_start();  // Starter sesjonen slik at brukerdata kan lagres i sesjonsvariabler etter vellykket innlogging.
+
 
 if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
 
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
    
 <div class="form-container">
    <form action="" method="post">
-      <h3>login now</h3>
+      <h3><?php echo $lang['login_now']; ?></h3>
       <?php
       // Viser eventuelle feilmeldinger til brukeren.
       if(isset($error)){
@@ -61,11 +61,11 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
       };
       ?>
       <!-- Inputfelt for e-post og passord, samt en innsendingsknapp. -->
-      <input type="email" name="email" required placeholder="enter your email">
-      <input type="password" name="password" required placeholder="enter your password">
+      <input type="email" name="email" required placeholder="<?php echo $lang['enter_email']; ?>">
+      <input type="password" name="password" required placeholder="<?php echo $lang['enter_password']; ?>">
       <input type="submit" name="submit" value="login now" class="form-btn">
       <!-- Lenke for brukere som ikke har en konto, til å registrere seg. -->
-      <p>don't have an account? <a href="register_form.php">register now</a></p>
+      <p><?php echo $lang['account_exists']; ?> <a href="register_form.php"><?php echo $lang['register_now']; ?></a></p>
    </form>
 </div>
 

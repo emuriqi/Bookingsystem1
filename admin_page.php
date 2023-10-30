@@ -42,8 +42,8 @@ if(!isset($_SESSION['admin_name'])){
       <h1><?php echo $lang['hello']; ?>:</h1>
       <h3><?php echo $lang['welcome']; ?>: <span><?php echo $_SESSION['admin_name'] ?></span></h3>
       <p><?php echo $lang['logged_as_ta']; ?></p>
-      <a href="calendar.php" class="btn"><?php echo $lang['your_appointments']; ?></a>
-      <a href="set_availability.php" class="btn"><?php echo $lang['set_availability']; ?></a>
+      <a href="oversikt.php" class="btn"><?php echo $lang['your_appointments']; ?></a>
+      <a href="calendar.php" class="btn"><?php echo $lang['set_availability']; ?></a>
       <a href="chatpage.php" class="btn"><?php echo $lang['chat']; ?></a>
      
    </div>

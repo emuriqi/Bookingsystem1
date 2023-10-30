@@ -17,7 +17,7 @@
 
 .navbar-logo {
    text-decoration: none;
-   color: white;
+   color: rgb(11, 10, 10);
    font-size: 24px;
    font-weight: bold;
 }
@@ -35,7 +35,7 @@
 
 .navbar-menu-item a {
    text-decoration: none;
-   color: white;
+   color: rgb(3, 3, 3);
    font-size: 18px;
 }
 
