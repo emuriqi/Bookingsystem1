@@ -1,7 +1,10 @@
 <?php
 // Inkluderer konfigurasjonsfilen, som sannsynligvis inneholder databasetilkoblingsdetaljer.
+session_start();
 include 'config.php';
-
+if(!isset($_SESSION['user_name'])){
+   header('location:login_form.php');
+}
 // Starter en ny eller fortsetter en eksisterende sesjon.
 session_start();
 

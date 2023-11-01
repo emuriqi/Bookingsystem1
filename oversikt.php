@@ -1,5 +1,11 @@
 <?php 
+session_start();
 include 'config.php'; 
+if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
+    header('location:login_form.php');
+    exit(); // make sure no further processing is done after the redirect
+ }
+ 
 ?>
 
 <!DOCTYPE html>

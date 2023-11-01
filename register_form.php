@@ -1,6 +1,6 @@
 <?php
 include 'language_setup.php';
-@include 'config.php';  // Inkluderer konfigurasjonsfilen som antakelig inneholder databasetilkoblingsinnstillingene.
+include 'config.php';  // Inkluderer konfigurasjonsfilen som antakelig inneholder databasetilkoblingsinnstillingene.
 
 if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
 

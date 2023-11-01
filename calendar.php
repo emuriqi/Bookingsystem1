@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
+    header('location:login_form.php');
+    exit(); // make sure no further processing is done after the redirect
+ }
+ 
+
 function build_calendar($month, $year, $hjelpelærere_id = 0) {
     $mysqli = new mysqli('localhost', 'root', '', 'user_db');
     

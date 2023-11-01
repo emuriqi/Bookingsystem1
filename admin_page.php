@@ -2,7 +2,7 @@
 session_start();
 
 include 'language_setup.php';
-@include 'config.php';  // Inkluderer konfigurasjonsfilen som sannsynligvis inneholder databasetilkoblingsinnstillinger
+include 'config.php';  // Inkluderer konfigurasjonsfilen som sannsynligvis inneholder databasetilkoblingsinnstillinger
 
  // Starter en ny sesjon eller fortsetter den eksisterende
 

@@ -22,15 +22,4 @@ $lang = array(
     'chat' => 'Chat'
     // ... andre nødvendige oversettelser
 );
-
-
-
-
-
-
-
-
-
-
-
 ?>

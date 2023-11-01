@@ -1,6 +1,6 @@
 <?php
 include 'language_setup.php';
-@include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger eller annen konfigurasjon.
+include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger eller annen konfigurasjon.
 
 
 

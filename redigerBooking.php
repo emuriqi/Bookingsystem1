@@ -9,6 +9,8 @@ $date = "";
 $timeslot = "";
 $email = "";
 
+
+
 $duration = 60;
 $cleanup = 0;
 $start = "09:00";
@@ -83,16 +85,17 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
             $errorMessage = "Alle feltene må fylles ut";
             break;
         }
-
+      
         $stmt = $conn->prepare("UPDATE bookings SET Date=?, Timeslot=?, email=? WHERE id=?");
         $stmt->bind_param("ssss", $date, $timeslot, $email, $id);
         $result = $stmt->execute();
 
-        if (!$result) {
+      
+        if(!$result) {
             $errorMessage = "Feil ved oppdatering av informasjon: " . $conn->error;
             break;
         }
-
+     
         $successMessage = "Oppdatering vellykket";
         header("Location: oversikt.php");
         exit;
@@ -124,6 +127,7 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
 
     <h1 class="overskrift">Dato</h1>
     <div class="container my-5">
+ 
         <form method="post" action="">
             <input type="hidden" name="id" value="<?php echo $id ?>">
             <div class="row mb-3">

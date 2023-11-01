@@ -1,4 +1,13 @@
 <?php
+session_start();
+include 'emailValid.php'; 
+
+if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
+    header('location:login_form.php');
+    exit(); // make sure no further processing is done after the redirect
+ }
+ 
+
 $date = "";
 $hjelpelærere_id = "";
 $msg = "";
@@ -34,9 +43,10 @@ if (isset($_POST['submit'])) {
     $timeslot = $_POST['timeslot'];
     $hjelpelærere_id = $_POST['hjelpelærer_id'];
 
-    echo "hjelpelærere_id: $hjelpelærere_id"; // Debugging statement
-
-    if (!$hjelpelærere_id) {
+    if (!is_valid_email($email)) {
+        $msg = "<div class='alert alert-danger'>Ugyldig Email!.</div>";
+    }
+    elseif (!$hjelpelærere_id) {
         $msg = "<div class='alert alert-danger'>Teacher Assistant ID is missing</div>";
     } elseif (in_array($timeslot, $bookings)) {
         $msg = "<div class='alert alert-danger'>Already Booked</div>";
@@ -100,7 +110,7 @@ function timeslots($duration, $cleanup, $start, $end) {
     <div class="navbar-container">
         <a href="home.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
+            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
         </ul>
     </div>

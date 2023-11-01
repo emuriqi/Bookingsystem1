@@ -2,7 +2,10 @@
 // Inkluderer konfigurasjonsfilen og starter sesjonen.
 include 'language_setup.php';
 include 'config.php';
-session_start();
+if(!isset($_SESSION['admin_name'])){
+   header('location:login_form.php');
+}
+
 $id = $_SESSION['id'];  // Henter brukerens ID fra sesjonen.
 
 // Sjekker om brukeren har sendt inn oppdateringsformularet.

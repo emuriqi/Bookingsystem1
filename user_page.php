@@ -1,6 +1,6 @@
 <?php
 // Inkluderer konfigurasjonsfilen, som kan inneholde databasetilkoblingsdetaljer og andre innstillinger.
-@include 'config.php';
+include 'config.php';
 
 // Starter en ny eller fortsetter en eksisterende sesjon.
 session_start();

@@ -1,6 +1,6 @@
 <?php
 
-@include 'config.php';  // Inkluderer konfigurasjonsfilen, antagelig inneholder databasekoblingsdetaljer eller andre konfigurasjonsdetaljer.
+include 'config.php';  // Inkluderer konfigurasjonsfilen, antagelig inneholder databasekoblingsdetaljer eller andre konfigurasjonsdetaljer.
 
 session_start();  // Starter sesjonen. Dette er nødvendig for å få tilgang til eksisterende sesjonsvariabler.
 
