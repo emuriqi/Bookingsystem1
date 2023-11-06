@@ -23,7 +23,7 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
             <li class="navbar-menu-item"><a href="edit.php">Endre profil</a></li>
-            <li class="navbar-menu-item"><a href="index.php">Logg ut</a></li>
+            <li class="navbar-menu-item"><a href="login_form.php">Logg ut</a></li>
         </ul>
     </div>
 </header>
