@@ -1,6 +1,7 @@
 <?php
 // Inkluderer konfigurasjonsfilen, som kan inneholde databasetilkoblingsdetaljer og andre innstillinger.
 include 'config.php';
+include 'language_setup.php';
 
 // Starter en ny eller fortsetter en eksisterende sesjon.
 session_start();
@@ -40,11 +41,14 @@ if(!isset($_SESSION['user_name'])){
 <!-- Hovedinnholdet på siden, som inkluderer en hilsen til brukeren og en knapp for å booke tid. -->
 <div class="container">
    <div class="content">
-      <h3>hi, <span>user</span></h3>
-      <h1>welcome <span><?php echo $_SESSION['user_name'] ?></span></h1>
+      <h1>Hei:</h1>
+      <h1>Velkommen <span><?php echo $_SESSION['user_name'] ?></span></h1>
       <!-- PHP-koden ovenfor trekker brukernavnet fra sesjonen og viser det på siden. -->
-      <p>this is an user page</p>
+      <p>Logget inn som student</p>
+
+      <a href="oversikt.php" class="btn">Oversikt</a>
       <a href="calendar.php" class="btn">Book Time</a>
+      <a href="chatpage.php" class="btn">Chat</a>
       <!-- Lenken ovenfor skal sannsynligvis lede til en side hvor brukeren kan booke tid, men merkelig nok fører den til innloggingssiden. -->
    </div>
 </div>

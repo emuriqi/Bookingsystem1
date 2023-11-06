@@ -22,15 +22,16 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
         <a href="home.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
-            <li class="navbar-menu-item"><a href="edit.php">Change Profile</a></li>
-            <li class="navbar-menu-item"><a href="index.php">Logout</a></li>
+            <li class="navbar-menu-item"><a href="edit.php">Endre profil</a></li>
+            <li class="navbar-menu-item"><a href="index.php">Logg ut</a></li>
         </ul>
     </div>
 </header>
 
 <div class="container my-5">
     <h2>Oversikt</h2>
-    <a class="btn btn-primary" href="home.php" role="button">Book timer</a>
+    <a href="calendar.php "class="btn btn-primary" href="home.php" role="button">Book timer</a>
+
     <br> 
     <h1 class="overskrift">Dine timer</h1>
     <table class="table">
