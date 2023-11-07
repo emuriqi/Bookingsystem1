@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $timeslot = $_POST['timeslot'];
-    $hjelpelærere_id = $_POST['hjelpelærer_id'];
+    $hjelpelærere_id = $_POST['hjelpelærere_id'];
 
     if (!is_valid_email($email)) {
         $msg = "<div class='alert alert-danger'>Ugyldig Email!.</div>";
@@ -164,7 +164,7 @@ function timeslots($duration, $cleanup, $start, $end) {
                                     <label for="email">Email</label>
                                     <input required type="text" name="email" id="email" class="form-control">
                                 </div>
-                                <input type="hidden" name="hjelpelærer_id" value="<?php echo $hjelpelærere_id; ?>">
+                                <input type="hidden" name="hjelpelærere_id" value="<?php echo $hjelpelærere_id; ?>">
                                 <div class="form-group pull-right">
                                     <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                 </div>

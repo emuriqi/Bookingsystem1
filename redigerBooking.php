@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-include 'navbar/navbarAdmin.php'; 
+ 
 session_start();
 
 

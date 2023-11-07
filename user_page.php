@@ -4,7 +4,6 @@ include 'config.php';
 include 'language_setup.php';
 
 // Starter en ny eller fortsetter en eksisterende sesjon.
-session_start();
 
 // Sjekker om brukeren er logget inn. Hvis ikke, blir brukeren omdirigert til innloggingssiden.
 if(!isset($_SESSION['user_name'])){
