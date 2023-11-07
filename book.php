@@ -169,7 +169,7 @@ function timeslots($duration, $cleanup, $start, $end) {
                                     <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                 </div>
                                 <div class="container">
-                                <a href="calender.php" class="btn btn-primary">Tilbake til kalender</a>
+                                <a href="calendar.php" class="btn btn-primary">Tilbake til kalender</a>
                                 </div>
                                 </div>
                             </form>

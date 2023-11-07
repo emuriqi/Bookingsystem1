@@ -17,9 +17,21 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     <title>Oversikt</title>
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
+            <li class="navbar-menu-item"><a href="edit.php">Change Profile</a></li>
+            <li class="navbar-menu-item"><a href="index.php">Logout</a></li>
+        </ul>
+    </div>
+</header>
+
 <div class="container my-5">
     <h2>Oversikt</h2>
-    <a class="btn btn-primary" href="home.php" role="button">Book timer</a>
+    <a href="calendar.php "class="btn btn-primary" href="home.php" role="button">Book timer</a>
+
     <br> 
     <h1 class="overskrift">Dine timer</h1>
     <table class="table">

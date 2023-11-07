@@ -27,8 +27,8 @@
 </head>
 <body>
 <div class="container">
-  <center><h2>Welcome</h2>
-	<label>Join the chat</label>
+  <center><h2>Velkommen</h2>
+	<label>Start chat</label>
   </center></br>
   <div class="display-chat">
 <?php
