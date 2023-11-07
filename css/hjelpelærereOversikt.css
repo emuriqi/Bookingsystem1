@@ -1,0 +1,79 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.helper {
+    border-bottom: 1px solid #eaeaea;
+    padding: 15px 0;
+}
+
+.helper:last-child {
+    border-bottom: none;
+}
+
+img {
+    max-width: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.helper-details {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.helper-title {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+
+.helper-content {
+    margin: 10px 0;
+    color: #666;
+}
+ 
+/* ... (din eksisterende CSS-kode) ... */
+
+.helper-overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 5px;
+}
+
+.helper-overview img {
+    max-width: 80px;
+    border-radius: 50%;
+}
+
+.helper-overview-details {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.helper-overview-title {
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.helper-overview-content {
+    color: var(--gray);
+}

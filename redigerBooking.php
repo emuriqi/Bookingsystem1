@@ -1,7 +1,7 @@
 <?php
-
-session_start();
 include 'config.php';
+include 'navbar/navbarAdmin.php'; 
+session_start();
 
 
 $id = "";
@@ -115,16 +115,6 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
 </head>
 
 <body>
-<header class="navbar">
-    <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
-        <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
-            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
-        </ul>
-    </div>
-</header>  
-
     <h1 class="overskrift">Dato</h1>
     <div class="container my-5">
  
