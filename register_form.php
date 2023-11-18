@@ -1,36 +1,58 @@
 <?php
 include 'language_setup.php';
-include 'config.php';  // Inkluderer konfigurasjonsfilen som antakelig inneholder databasetilkoblingsinnstillingene.
+include 'config.php';
 
-if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
+if(isset($_POST['submit'])){
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    $user_type = $_POST['user_type'];
 
-   // Saniterer og lagrer brukerens inndata.
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);  // Bruker MD5 for passordhashing, som ikke anbefales på grunn av sikkerhetsproblemer.
-   $cpass = md5($_POST['cpassword']);  // Gjør det samme for bekreftelsespassordet.
-   $user_type = $_POST['user_type'];  // Henter brukertypen.
+    // Validering for e-postformat
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error[] = 'Invalid email format';
+    }
 
-   // Sjekker om en bruker allerede eksisterer med samme e-post og passord.
-   $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
-   $result = mysqli_query($conn, $select);
+    // Validering for passordstyrke
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number = preg_match('@[0-9]@', $password);
 
-   if(mysqli_num_rows($result) > 0){  // Hvis en bruker allerede eksisterer, opprettes en feilmelding.
-      $error[] = 'user already exist!';
-   }else{
-      // Sjekker om passordet og bekreftelsespassordet matcher.
-      if($pass != $cpass){
-         $error[] = 'password not matched!';
-      }else{
-         // Innskudd av brukerens data i databasen og omdirigering til innloggingssiden.
-         $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
-         mysqli_query($conn, $insert);
-         header('location:login_form.php');
-      }
-   }
-};
+    if (!($uppercase && $lowercase && $number && strlen($password) >= 8)) {
+        $error[] = 'Passordet må ha minst 8 tegn og inkludere minst en stor bokstav og et tall';
+    }
 
+    // Sjekker om en bruker allerede eksisterer med samme e-post.
+    $select = "SELECT * FROM user_form WHERE email = ?";
+    $stmt = mysqli_prepare($conn, $select);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+
+    if(mysqli_stmt_num_rows($stmt) > 0){
+        $error[] = 'Bruker finnes allerede!';
+    } else {
+        // Sjekker om passordet og bekreftelsespassordet matcher.
+        if($password != $cpassword){
+            $error[] = 'Passord matcher ikke!';
+        } else {
+            // Hasher passordet før lagring i databasen
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Innskudd av brukerens data i databasen og omdirigering til innloggingssiden.
+            $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES(?, ?, ?, ?)";
+            $stmt_insert = mysqli_prepare($conn, $insert);
+            mysqli_stmt_bind_param($stmt_insert, "ssss", $name, $email, $hashed_password, $user_type);
+            mysqli_stmt_execute($stmt_insert);
+
+            // Gi en visuell tilbakemelding om vellykket registrering
+            $success_message = 'Registrering vellykket. Nå kan du logge inn.';
+        }
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,12 +70,14 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
    <form action="" method="post">
       <h3><?php echo $lang['register_now']; ?></h3>
       <?php
-      // Viser eventuelle feilmeldinger.
+      // Viser eventuelle feilmeldinger eller suksessmelding.
       if(isset($error)){
          foreach($error as $error){
             echo '<span class="error-msg">'.$error.'</span>';
          };
-      };
+      } elseif (isset($success_message)) {
+         echo '<span class="success-msg">'.$success_message.'</span>';
+      }
       ?>
       <!-- Inputfelter for navn, e-post, passord, bekreft passord og brukertype -->
       <input type="text" name="name" required placeholder="<?php echo $lang['enter_name']; ?>">
@@ -65,7 +89,7 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
          <option value="admin"><?php echo $lang['admin']; ?></option>
       </select>
       <!-- Registreringsknapp -->
-      <input type="submit" name="submit" value="register now" class="form-btn">
+      <input type="submit" name="submit" value="registrer nå" class="form-btn">
       <!-- Lenke til innloggingssiden for eksisterende brukere -->
       <p><?php echo $lang['account_exists']; ?> <a href="login_form.php"><?php echo $lang['login_now']; ?></a></p>
    </form>
@@ -74,3 +98,4 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
 
 </body>
 </html>
+
