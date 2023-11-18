@@ -2,40 +2,43 @@
 include 'language_setup.php';
 include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger eller annen konfigurasjon.
 
-
-
-if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
+if (isset($_POST['submit'])) {  // Sjekker om skjemaet er sendt.
 
    // Saniterer og lagrer brukerinput.
-   $name = mysqli_real_escape_string($conn, $_POST['name']); 
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = md5($_POST['password']);  // MD5 for passordhashing (ikke anbefalt pga sikkerhetsproblemer).
-   $cpass = md5($_POST['cpassword']);  
+   // Bruk password_hash for passordhashing
+   $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+   $cpass = password_hash($_POST['cpassword'], PASSWORD_DEFAULT);
    $user_type = $_POST['user_type'];
 
-   // SQL-spørring for å sjekke om brukeren med gitt e-post og passord eksisterer i databasen.
-   $select = "SELECT * FROM user_form WHERE email = '$email' && password = '$pass'";
+   // SQL-spørring for å sjekke om e-posten allerede eksisterer i databasen.
+   $select = "SELECT * FROM user_form WHERE email = '$email'";
    $result = mysqli_query($conn, $select);
 
-   if(mysqli_num_rows($result) > 0){  // Hvis en bruker er funnet.
+   if (mysqli_num_rows($result) > 0) {  // Hvis en bruker er funnet.
 
       $row = mysqli_fetch_array($result);  // Henter brukerdata.
-      $_SESSION['id'] = $row['id'];  // Lagrer brukerens ID i en sesjonsvariabel.
 
-      // Sjekker brukerens type og omdirigerer til riktig side.
-      if($row['user_type'] == 'admin'){
-         $_SESSION['admin_name'] = $row['name'];  
-         header('location:admin_page.php');
-      }elseif($row['user_type'] == 'user'){
-         $_SESSION['user_name'] = $row['name'];
-         header('location:user_page.php');
+      // Verifiser passordet
+      if (password_verify($_POST['password'], $row['password'])) {
+         $_SESSION['id'] = $row['id'];  // Lagrer brukerens ID i en sesjonsvariabel.
+
+         // Sjekker brukerens type og omdirigerer til riktig side.
+         if ($row['user_type'] == 'admin') {
+            $_SESSION['admin_name'] = $row['name'];
+            header('location:admin_page.php');
+         } elseif ($row['user_type'] == 'user') {
+            $_SESSION['user_name'] = $row['name'];
+            header('location:user_page.php');
+         }
+      } else {
+         $error[] = 'incorrect email or password!';  // Legger til en feilmelding hvis passordet ikke stemmer.
       }
-     
-   } else{
+   } else {
       $error[] = 'incorrect email or password!';  // Legger til en feilmelding hvis ingen bruker er funnet.
    }
-};
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,9 +57,9 @@ if(isset($_POST['submit'])){  // Sjekker om skjemaet er sendt.
       <h3><?php echo $lang['login_now']; ?></h3>
       <?php
       // Viser eventuelle feilmeldinger til brukeren.
-      if(isset($error)){
-         foreach($error as $error){
-            echo '<span class="error-msg">'.$error.'</span>';
+      if (isset($error)) {
+         foreach ($error as $error) {
+            echo '<span class="error-msg">' . $error . '</span>';
          };
       };
       ?>
