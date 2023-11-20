@@ -2,12 +2,12 @@
 include 'language_setup.php';
 include 'config.php';
 
-
 $error = []; // Initialiser feil-array
 
 if (isset($_POST['submit'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    // Rens input
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
     $pass = $_POST['password'];
     $cpass = $_POST['cpassword'];
     $user_type = $_POST['user_type']; // Henter brukertype fra POST-data
@@ -21,17 +21,24 @@ if (isset($_POST['submit'])) {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error[] = 'E-postadressen er i feil format!';
     } else {
-        $select = "SELECT * FROM user_form WHERE email = '$email'";
-        $result = mysqli_query($conn, $select);
-        if (mysqli_num_rows($result) > 0) {
+        // Prepared statement for å sjekke e-post
+        $select = $conn->prepare("SELECT * FROM user_form WHERE email = ?");
+        $select->bind_param("s", $email);
+        $select->execute();
+        $result = $select->get_result();
+
+        if ($result->num_rows > 0) {
             $error[] = 'En bruker med denne e-postadressen eksisterer allerede.';
         } else {
             if ($user_type !== 'admin' && $user_type !== 'user') {
                 $error[] = 'Ugyldig brukertype valgt.';
             } else {
+                // Prepared statement for å sette inn ny bruker
                 $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
-                $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$hashed_pass','$user_type')";
-                mysqli_query($conn, $insert);
+                $insert = $conn->prepare("INSERT INTO user_form(name, email, password, user_type) VALUES(?, ?, ?, ?)");
+                $insert->bind_param("ssss", $name, $email, $hashed_pass, $user_type);
+                $insert->execute();
+
                 header('location:login_form.php');
                 exit();
             }
@@ -39,7 +46,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

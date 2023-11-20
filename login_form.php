@@ -2,12 +2,14 @@
 include 'language_setup.php';
 include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger.
 
- // Starter en ny session eller gjenopptar en eksisterende.
+session_start(); // Starter en ny session eller gjenopptar en eksisterende.
+
+$error = []; // Initialiserer en array for å holde feilmeldinger.
 
 if (isset($_POST['submit'])) {  // Sjekker om skjemaet er sendt.
 
-    // Saniterer og lagrer brukerinput.
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    // Renser e-postadressen for å forhindre XSS.
+    $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];  // Passordet som brukeren har innskrevet.
 
     // Forberedt uttalelse for å forhindre SQL-injeksjon.
