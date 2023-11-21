@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     } elseif ($pass !== $cpass) {
         $error[] = 'Passordene stemmer ikke overens.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error[] = 'E-postadressen er i feil format!';
+        $error[] = 'E-postadressen er skrevet på feil format!';
     } else {
         // Prepared statement for å sjekke e-post
         $select = $conn->prepare("SELECT * FROM user_form WHERE email = ?");
