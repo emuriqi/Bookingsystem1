@@ -2,17 +2,15 @@
 include 'language_setup.php';
 include 'config.php';
 
-if(isset($_POST['submit'])){
+
+$error = []; // Initialiser feil-array
+
+if (isset($_POST['submit'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $user_type = $_POST['user_type'];
-
-    // Validering for e-postformat
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error[] = 'Invalid email format';
-    }
+    $pass = $_POST['password'];
+    $cpass = $_POST['cpassword'];
+    $user_type = $_POST['user_type']; // Henter brukertype fra POST-data
 
     // Validering for passordstyrke
     $uppercase = preg_match('@[A-Z]@', $password);
@@ -33,26 +31,24 @@ if(isset($_POST['submit'])){
     if(mysqli_stmt_num_rows($stmt) > 0){
         $error[] = 'Bruker finnes allerede!';
     } else {
-        // Sjekker om passordet og bekreftelsespassordet matcher.
-        if($password != $cpassword){
-            $error[] = 'Passord matcher ikke!';
+        $select = "SELECT * FROM user_form WHERE email = '$email'";
+        $result = mysqli_query($conn, $select);
+        if (mysqli_num_rows($result) > 0) {
+            $error[] = 'En bruker med denne e-postadressen eksisterer allerede.';
         } else {
-            // Hasher passordet før lagring i databasen
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Innskudd av brukerens data i databasen og omdirigering til innloggingssiden.
-            $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES(?, ?, ?, ?)";
-            $stmt_insert = mysqli_prepare($conn, $insert);
-            mysqli_stmt_bind_param($stmt_insert, "ssss", $name, $email, $hashed_password, $user_type);
-            mysqli_stmt_execute($stmt_insert);
-
-            // Gi en visuell tilbakemelding om vellykket registrering
-            $success_message = 'Registrering vellykket. Nå kan du logge inn.';
+            if ($user_type !== 'admin' && $user_type !== 'user') {
+                $error[] = 'Ugyldig brukertype valgt.';
+            } else {
+                $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
+                $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$hashed_pass','$user_type')";
+                mysqli_query($conn, $insert);
+                header('location:login_form.php');
+                exit();
+            }
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
