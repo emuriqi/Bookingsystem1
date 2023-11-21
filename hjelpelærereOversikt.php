@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'config.php'; 
-include 'navbar/navbarUser.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +13,17 @@ include 'navbar/navbarUser.php';
     <link rel="stylesheet" href="css/hjelpelærereOversikt.css">
 </head>
 <body>
+<header class="navbar">
+    <div class="navbar-container">
+        <a href="home.php" class="navbar-logo">Logo</a>
+        <ul class="navbar-menu">
+            <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
+            <li class="navbar-menu-item"><a href="edit.php">Endre Profil</a></li>
+            <li class="navbar-menu-item"><a href="index.php">Logg Ut</a></li>
+        </ul>
+    </div>
+</header>
+
 
 <div class="container">
     <?php
@@ -23,7 +34,7 @@ include 'navbar/navbarUser.php';
 
     foreach ($helpers as $helper) {
         echo '<div class="helper-overview">';
-            echo '<img src="' . $helper['image'].' alt="Helper Image>';
+        echo '<img src="uploaded_img/' . $helper['image'] . '" alt="Helper Image">';
             echo '<div class="helper-overview-details">';
                 echo '<div class="helper-overview-title">' . $helper['name'] . '</div>';
                 echo '<div class="helper-overview-content">Email: ' . $helper['email'] . '</div>';

@@ -45,8 +45,7 @@ if(!isset($_SESSION['user_name'])){
       <!-- PHP-koden ovenfor trekker brukernavnet fra sesjonen og viser det på siden. -->
       <p>Logget inn som student</p>
 
-      <a href="hjelpelærereOversikt.php" class="btn">Hjelpelærere</a>
-      <a href="oversikt.php" class="btn">Hendelser</a>
+      <a href="oversikt.php" class="btn">Oversikt</a>
       <a href="calendar.php" class="btn">Book Time</a>
       <a href="chatpage.php" class="btn">Chat</a>
       <!-- Lenken ovenfor skal sannsynligvis lede til en side hvor brukeren kan booke tid, men merkelig nok fører den til innloggingssiden. -->
