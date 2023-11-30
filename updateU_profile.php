@@ -8,7 +8,7 @@ if(!isset($_SESSION['user_name'])){
 
 
 // Henter bruker-ID fra sesjonen.
-$id = $_SESSION['id'];
+$user_id = $_SESSION['user_id'];
 
 // Sjekker om brukeren har sendt inn skjemaet for å oppdatere profilen.
 if(isset($_POST['update_profile'])){
@@ -18,7 +18,7 @@ if(isset($_POST['update_profile'])){
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
    // Oppdaterer brukerens navn og e-post i databasen.
-   mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE id = '$id'") or die('query failed');
+   mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE user_id = '$id'") or die('query failed');
 
    // Henter og behandler passorddata fra skjemaet.
    $old_pass = $_POST['old_pass'];
@@ -35,7 +35,7 @@ if(isset($_POST['update_profile'])){
          $message[] = 'confirm password not matched!';
       }else{
          // Oppdaterer passordet i databasen hvis valideringen er vellykket.
-         mysqli_query($conn, "UPDATE `user_form` SET password = '$confirm_pass' WHERE id = '$id'") or die('query failed');
+         mysqli_query($conn, "UPDATE `user_form` SET password = '$confirm_pass' WHERE user_id = '$id'") or die('query failed');
          $message[] = 'password updated successfully!';
       }
    }
@@ -68,7 +68,7 @@ if(isset($_POST['update_profile'])){
 
    <?php
       // Henter brukerdata fra databasen basert på bruker-ID.
-      $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$id'") or die('query failed');
+      $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE user_id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
          $fetch = mysqli_fetch_assoc($select);
       }

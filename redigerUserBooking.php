@@ -95,7 +95,7 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
         }
      
         $successMessage = "Oppdatering vellykket";
-        header("Location: oversikt.php");
+        header("Location: oversiktUser.php");
         exit;
     } while (false);
 }

@@ -1,18 +1,20 @@
 <?php 
 session_start();
 include 'config.php'; 
+
+// Check if the user is not logged in, then redirect to the login page.
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');
     exit();
 }
 
-// Assuming the user's ID is stored in a session variable called 'id'.
-if(isset($_SESSION['id'])){
-    $id = $_SESSION['id'];
+// Using 'user_id' as the session variable for the user's ID.
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
 } else {
     // If user ID is not set, redirect to login or give an error
     header('location:login_form.php');
-    exit;
+    exit();
 }
 
 ?>
@@ -56,9 +58,11 @@ if(isset($_SESSION['id'])){
         <tbody>
             <?php 
             // Query that selects only the bookings for the logged-in user
-            $sql = "SELECT * FROM bookings WHERE id = $id";
+            $sql = "SELECT bookings.* FROM bookings 
+        JOIN user_form ON bookings.email = user_form.email 
+        WHERE user_form.user_id = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $id);
+            $stmt->bind_param("i", $user_id);
             $stmt->execute();
             $result = $stmt->get_result();
 
@@ -80,8 +84,8 @@ if(isset($_SESSION['id'])){
                     <td>" . htmlspecialchars($email) . "</td>
                     <td>" . htmlspecialchars($date) . "</td>
                     <td>
-                        <a class='btn btn-primary btn-sm' href='redigerBooking.php?id=" . htmlspecialchars($id) . "'>Rediger</a>
-                        <a class='btn btn-danger btn-sm' href='deleteBooking.php?id=" . htmlspecialchars($id) . "'>Slett</a>
+                        <a class='btn btn-primary btn-sm' href='redigerUserBooking.php?id=" . htmlspecialchars($id) . "'>Rediger</a>
+                        <a class='btn btn-danger btn-sm' href='deleteUserBooking.php?id=" . htmlspecialchars($id) . "'>Slett</a>
                     </td>
                 </tr>
                 ";

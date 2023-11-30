@@ -6,7 +6,7 @@ if(!isset($_SESSION['admin_name'])){
    header('location:login_form.php');
 }
 
-$id = $_SESSION['id'];  // Henter brukerens ID fra sesjonen.
+$user_id = $_SESSION['user_id'];  // Henter brukerens ID fra sesjonen.
 
 // Sjekker om brukeren har sendt inn oppdateringsformularet.
 if(isset($_POST['update_profile'])){
@@ -17,12 +17,12 @@ if(isset($_POST['update_profile'])){
    
    // Update the database with the new textarea data, if they are not empty.
    if($about_me !== '' || $availability !== ''){
-       mysqli_query($conn, "UPDATE `user_form` SET about_me = '$about_me', availability = '$availability' WHERE id = '$id'") or die('query failed');
+       mysqli_query($conn, "UPDATE `user_form` SET about_me = '$about_me', availability = '$availability' WHERE user_id = '$user_id'") or die('query failed');
    }
 
    $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
-   mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE id = '$id'") or die('query failed');
+   mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE user_id = '$user_id'") or die('query failed');
 
    // Håndterer oppdatering av brukerens passord.
    $old_pass = $_POST['old_pass'];
@@ -35,7 +35,7 @@ if(isset($_POST['update_profile'])){
       }elseif($new_pass != $confirm_pass){
          $message[] = 'confirm password not matched!';
       }else{
-         mysqli_query($conn, "UPDATE `user_form` SET password = '$confirm_pass' WHERE id = '$id'") or die('query failed');
+         mysqli_query($conn, "UPDATE `user_form` SET password = '$confirm_pass' WHERE user_id = '$user_id'") or die('query failed');
          $message[] = 'password updated successfully!';
       }
    }
@@ -50,7 +50,7 @@ if(isset($_POST['update_profile'])){
          $message[] = 'image is too large';
       }else{
          // Oppdaterer bildeinformasjonen i databasen og flytter bildet til en angitt mappe.
-         $image_update_query = mysqli_query($conn, "UPDATE `user_form` SET image = '$update_image' WHERE id = '$id'") or die('query failed');
+         $image_update_query = mysqli_query($conn, "UPDATE `user_form` SET image = '$update_image' WHERE user_id = '$user_id'") or die('query failed');
          if($image_update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
          }
@@ -84,7 +84,7 @@ if(isset($_POST['update_profile'])){
 <div class="update-profile">
    <!-- PHP for å hente brukerens nåværende data -->
    <?php
-      $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$id'") or die('query failed');
+      $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE user_id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select) > 0){
          $fetch = mysqli_fetch_assoc($select);
       }

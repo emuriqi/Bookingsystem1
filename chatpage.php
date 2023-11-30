@@ -5,13 +5,13 @@
 		exit(); // make sure no further processing is done after the redirect
 	 }
 	 
-	if(isset($_SESSION['id']))
+	if(isset($_SESSION['user_id']))
 	{
 		include "config.php"; 
 		
 		$sql = "SELECT c.message, u.name 
         FROM chat c 
-        JOIN user_form u ON c.id = u.id 
+        JOIN user_form u ON c.user_id = u.user_id 
         ORDER BY c.timestamp DESC";
 
 

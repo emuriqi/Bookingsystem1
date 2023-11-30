@@ -2,7 +2,7 @@
 include 'language_setup.php';
 include 'config.php';  // Inkluderer konfigurasjonsfilen som inneholder databasetilkoblingsinnstillinger.
 
-session_start(); // Starter en ny session eller gjenopptar en eksisterende.
+ // Starter en ny session eller gjenopptar en eksisterende.
 
 $error = []; // Initialiserer en array for å holde feilmeldinger.
 
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {  // Sjekker om skjemaet er sendt.
 
         // Verifiser passordet
         if (password_verify($password, $row['password'])) {
-            $_SESSION['id'] = $row['id'];  // Lagrer brukerens ID i en sesjonsvariabel.
+            $_SESSION['user_id'] = $row['user_id'];  // Lagrer brukerens ID i en sesjonsvariabel.
 
             // Sjekker brukerens type og omdirigerer til riktig side.
             if ($row['user_type'] == 'admin') {

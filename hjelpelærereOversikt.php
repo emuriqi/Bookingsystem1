@@ -27,7 +27,7 @@ include 'config.php';
 
 <div class="container">
     <?php
-    $query = "SELECT id, name, email, user_type, image, about_me, availability FROM user_form WHERE user_type='admin'";
+    $query = "SELECT user_id, name, email, user_type, image, about_me, availability FROM user_form WHERE user_type='admin'";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $helpers = $stmt->fetchAll(PDO::FETCH_ASSOC);
