@@ -29,7 +29,7 @@ if(!isset($_SESSION['user_name'])){
 <!-- En navigasjonsbar som inneholder en logo, og lenker for å oppdatere profilen og logge ut. -->
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">UiA</a>
+        <a href="user_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Logg ut</a></li>
@@ -45,7 +45,8 @@ if(!isset($_SESSION['user_name'])){
       <!-- PHP-koden ovenfor trekker brukernavnet fra sesjonen og viser det på siden. -->
       <p>Logget inn som student</p>
 
-      <a href="oversikt.php" class="btn">Oversikt</a>
+      <a href="hjelpelærereoversikt.php" class="btn">HjelpelærereOversikt</a>
+      <a href="oversiktUser.php" class="btn">Dine Timer</a>
       <a href="calendar.php" class="btn">Book Time</a>
       <a href="chatpage.php" class="btn">Chat</a>
       <!-- Lenken ovenfor skal sannsynligvis lede til en side hvor brukeren kan booke tid, men merkelig nok fører den til innloggingssiden. -->

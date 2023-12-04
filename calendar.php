@@ -84,7 +84,7 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
     $calendar .= "</table>";
 
     $calendar .= "<form method='get'>";
-    $calendar .= "<label for='hjelpelærere_id'>Choose Teacher Assistant:</label>";
+    $calendar .= "<label for='hjelpelærere_id'>Velg hjelpelærer:</label>";
     $calendar .= "<select id='hjelpelærere_id' name='hjelpelærere_id' onchange='this.form.submit()'>";
     $calendar .= $hjelpelærereOptions;
     $calendar .= "</select>";
@@ -129,9 +129,9 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
                 ?>
 
                 <!-- Navigation Buttons -->
-                <a class="btn btn-primary" href="?month=<?php echo date('m', mktime(0, 0, 0, $month - 1, 1, $year)); ?>&year=<?php echo date('Y', mktime(0, 0, 0, $month - 1, 1, $year)); ?>">Previus Month</a>
-                <a class="btn btn-primary" href="?month=<?php echo date("m"); ?>&year=<?php echo date("Y"); ?>">Current Month</a>
-                <a class="btn btn-primary" href="?month=<?php echo date("m", mktime(0, 0, 0, $month + 1, 1, $year)); ?>&year=<?php echo date("Y", mktime(0, 0, 0, $month + 1, 1, $year)); ?>">Next Month</a>
+                <a class="btn btn-primary" href="?month=<?php echo date('m', mktime(0, 0, 0, $month - 1, 1, $year)); ?>&year=<?php echo date('Y', mktime(0, 0, 0, $month - 1, 1, $year)); ?>">Forrige Måned</a>
+                <a class="btn btn-primary" href="?month=<?php echo date("m"); ?>&year=<?php echo date("Y"); ?>">Nåværende Måned</a>
+                <a class="btn btn-primary" href="?month=<?php echo date("m", mktime(0, 0, 0, $month + 1, 1, $year)); ?>&year=<?php echo date("Y", mktime(0, 0, 0, $month + 1, 1, $year)); ?>">Neste Måned</a>
             </div>
         </div>
     </div>

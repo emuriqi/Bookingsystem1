@@ -19,15 +19,13 @@ if(!isset($_SESSION['admin_name'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>admin page</title>
-
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="update_profile.php"> <?php echo $lang['update_profile']; ?>
             </a></li>

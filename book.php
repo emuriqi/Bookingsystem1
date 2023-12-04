@@ -4,7 +4,7 @@ include 'emailValid.php';
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // make sure no further processing is done after the redirect
+    exit(); 
  }
  
 
@@ -47,18 +47,18 @@ if (isset($_POST['submit'])) {
         $msg = "<div class='alert alert-danger'>Ugyldig Email!.</div>";
     }
     elseif (!$hjelpelærere_id) {
-        $msg = "<div class='alert alert-danger'>Teacher Assistant ID is missing</div>";
+        $msg = "<div class='alert alert-danger'>Velg en hjelpelærer</div>";
     } elseif (in_array($timeslot, $bookings)) {
-        $msg = "<div class='alert alert-danger'>Already Booked</div>";
+        $msg = "<div class='alert alert-danger'>Denne er allerede booket</div>";
     } else {
         $stmt = $mysqli->prepare("INSERT INTO bookings (name, timeslot, email, date, hjelpelærere_id) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param('ssssi', $name, $timeslot, $email, $date, $hjelpelærere_id);
 
         if ($stmt->execute()) {
-            $msg = "<div class='alert alert-success'>Booking Successful</div>";
+            $msg = "<div class='alert alert-success'>Booking var vellyket</div>";
             $bookings[] = $timeslot;
         } else {
-            if ($stmt->errno == 1452) {  // Error code for foreign key constraint fail
+            if ($stmt->errno == 1452) {  
                 $msg = "<div class='alert alert-danger'>Invalid Teacher Assistant ID</div>";
             } else {
                 $msg = "<div class='alert alert-danger'>Booking Failed: " . $stmt->error . "</div>";
@@ -108,7 +108,7 @@ function timeslots($duration, $cleanup, $start, $end) {
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href=".php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
@@ -116,7 +116,7 @@ function timeslots($duration, $cleanup, $start, $end) {
     </div>
 </header>  
     <div class="container">
-        <h1 class="text-center">Book for date: <?php echo date('d/m/Y', strtotime($date)); ?></h1>
+        <h1 class="text-center">Book for denne datoen: <?php echo date('d/m/Y', strtotime($date)); ?></h1>
         <div class="row">
             <div class="col-md-12">
                 <?php echo $msg; ?>
@@ -139,25 +139,24 @@ function timeslots($duration, $cleanup, $start, $end) {
             ?>
         </div>
     </div>
-    <!-- Modal -->
+ 
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Booking: <span id="slot"></span></h4>
+                    <h4 class="modal-title">Book: <span id="slot"></span></h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label for="timeslot">Timeslot</label>
+                                    <label for="timeslot">Tidspunkt</label>
                                     <input required type="text" readonly name="timeslot" id="timeslot" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">Navn</label>
                                     <input required type="text" name="name" id="name" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -166,7 +165,7 @@ function timeslots($duration, $cleanup, $start, $end) {
                                 </div>
                                 <input type="hidden" name="hjelpelærere_id" value="<?php echo $hjelpelærere_id; ?>">
                                 <div class="form-group pull-right">
-                                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                    <button class="btn btn-primary" type="submit" name="submit">Lagre</button>
                                 </div>
                                 <div class="container">
                                 <a href="calendar.php" class="btn btn-primary">Tilbake til kalender</a>

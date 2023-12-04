@@ -32,9 +32,9 @@ if(isset($_SESSION['user_id'])){
     <div class="navbar-container">
         <a href="home.php" class="navbar-logo">Logo</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
-            <li class="navbar-menu-item"><a href="edit.php">Endre Profil</a></li>
-            <li class="navbar-menu-item"><a href="index.php">Logg Ut</a></li>
+            <li class="navbar-menu-item"><a href="user_page.php">Hjem</a></li>
+            <li class="navbar-menu-item"><a href="updateU_profile.php">Endre Profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Logg Ut</a></li>
         </ul>
     </div>
 </header>

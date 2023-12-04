@@ -21,9 +21,9 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     <div class="navbar-container">
         <a href="home.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="home.php">Hjem</a></li>
-            <li class="navbar-menu-item"><a href="edit.php">Change Profile</a></li>
-            <li class="navbar-menu-item"><a href="index.php">Logout</a></li>
+            <li class="navbar-menu-item"><a href="admin_page.php">Hjem</a></li>
+            <li class="navbar-menu-item"><a href="updata_profile.php">Change Profile</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 </header>

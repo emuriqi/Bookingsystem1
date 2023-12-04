@@ -55,7 +55,7 @@ if(isset($_POST['update_profile'])){
 <!-- Viser en navigasjonsbar med lenker for profiloppdatering og utlogging. -->
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href="user_pages.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
@@ -86,25 +86,25 @@ if(isset($_POST['update_profile'])){
       <!-- Skjemafelter for å oppdatere brukerinformasjon og passord. -->
       <div class="input-container">
             <div class="inputBox">
-                <span>username :</span>
+                <span>Navn :</span>
                 <input type="text" name="update_name" value="<?php echo $fetch['name']; ?>" class="box">
-                <span>your email :</span>
+                <span>Email :</span>
                 <input type="email" name="update_email" value="<?php echo $fetch['email']; ?>" class="box">
             </div>
             <div class="inputBox">
                 <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-                <span>old password :</span>
+                <span>Gammelt passorrd :</span>
                 <input type="password" name="update_pass" placeholder="enter previous password" class="box">
-                <span>new password :</span>
+                <span>Nytt passord :</span>
                 <input type="password" name="new_pass" placeholder="enter new password" class="box">
-                <span>confirm password :</span>
+                <span>Bekreft passord :</span>
                 <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
             </div>
         </div>
         <!-- Knapper for å sende inn skjemaet eller gå tilbake til brukersiden. -->
         <div class="btn-container">
             <input type="submit" value="update profile" name="updateU_profile" class="btn">
-            <a href="user_page.php" class="delete-btn">go back</a>
+            <a href="user_page.php" class="delete-btn">Tilbakr</a>
         </div>
    </form>
 </body>

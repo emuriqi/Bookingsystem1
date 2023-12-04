@@ -74,7 +74,7 @@ if(isset($_POST['update_profile'])){
 <header class="navbar">
     <!-- Navigasjonsbar med lenker -->
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">logo</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
@@ -108,11 +108,11 @@ if(isset($_POST['update_profile'])){
 <div class="flex">
          <div class="inputBox">
             <!-- Felt for å endre brukernavn, e-post og profilbilde -->
-            <span>username :</span>
+            <span>Navn :</span>
             <input type="text" name="update_name" value="<?php echo $fetch['name']; ?>" class="box">
-            <span>your email :</span>
+            <span>Email :</span>
             <input type="email" name="update_email" value="<?php echo $fetch['email']; ?>" class="box">
-            <span>update your pic :</span>
+            <span>Oppdater profilbilde :</span>
             <input type="file" name="update_image" accept="image/jpg, image/jpeg, image/png" class="box">
             <span for="about_me">Skriv om deg selv og erfaring :</span>
             <textarea id="about_me" name="about_me" rows="10" cols="50"><?php echo isset($fetch['about_me']) ? $fetch['about_me'] : ''; ?></textarea>
@@ -120,18 +120,18 @@ if(isset($_POST['update_profile'])){
          <div class="inputBox">
             <!-- Felt for å endre passord -->
             <input type="hidden" name="old_pass" value="<?php echo $fetch['password']; ?>">
-            <span>old password :</span>
+            <span>Gammelt passord :</span>
             <input type="password" name="update_pass" placeholder="enter previous password" class="box">
-            <span>new password :</span>
+            <span>Nytt passord :</span>
             <input type="password" name="new_pass" placeholder="enter new password" class="box">
-            <span>confirm password :</span>
+            <span>Bekreft passord :</span>
             <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
             <span for="availability">Hva veilder du i og når du er ledig :</span>
             <textarea id="availability" name="availability" rows="10" cols="50"><?php echo isset($fetch['availability']) ? $fetch['availability'] : ''; ?></textarea>
          </div>
       </div>
       <input type="submit" value="update profile" name="update_profile" class="btn">
-<a href="admin_page.php" class="delete-btn">go back</a>
+<a href="admin_page.php" class="delete-btn">Tilbake</a>
    </form>
 </div>
 </body>

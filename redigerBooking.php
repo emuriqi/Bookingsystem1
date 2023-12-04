@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $email = $row["email"];
 
     $stmt = $conn->prepare("SELECT * FROM bookings WHERE id=?");
-$stmt->bind_param("s", $id);
+    $stmt->bind_param("s", $id);
 
     
     $stmt->execute();
@@ -143,11 +143,7 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
     ?>
     <input type="hidden" name="timeslot" id="selected-timeslot" value="<?php echo $timeslot ?>">
 </div>
-            
-        
-               
-
-            <div class="row mb-3">
+     <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">E-post</label>
                 <div class="col-sm-6">
                     <input type="email" class="form-control" name="email" value="<?php echo $email ?>">
