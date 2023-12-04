@@ -4,7 +4,7 @@ include 'config.php';
 
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // make sure no further processing is done after the redirect
+    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
  }
 
 ?>
@@ -20,10 +20,9 @@ if(!isset($_SESSION['user_name'])){
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="user_page.php" class="navbar-logo">Logo</a>
+        <a href="user_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="user_page.php">Hjem</a></li>
-            <li class="navbar-menu-item"><a href="updataU_profile.php">Endre Profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Logg Ut</a></li>
         </ul>
     </div>

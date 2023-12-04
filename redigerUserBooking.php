@@ -169,7 +169,7 @@ while ($booking = $bookedTimeslots->fetch_assoc()) {
         var timeslot = $(this).attr('data-timeslot');
         $("#selected-timeslot").val(timeslot);
         
-        // Optionally, change the visual indication of the selected timeslot:
+        // Eventuelt endre den visuelle indikasjonen for den valgte tidsluken
         $(".select-timeslot").removeClass('btn-primary').addClass('btn-success');
         $(this).removeClass('btn-success').addClass('btn-primary');
     });

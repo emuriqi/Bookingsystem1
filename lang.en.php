@@ -20,7 +20,6 @@ $lang = array(
     'your_appointments' => 'Your Appointments',
     'set_availability' => 'Set Availability',
     'chat' => 'Chat'
-    // ... other translations
 );
 
 

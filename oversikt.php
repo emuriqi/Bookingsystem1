@@ -3,7 +3,7 @@ session_start();
 include 'config.php'; 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // make sure no further processing is done after the redirect
+    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
  }
  
 ?>
@@ -19,21 +19,21 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="admin_page.php">Hjem</a></li>
-            <li class="navbar-menu-item"><a href="updata_profile.php">Change Profile</a></li>
-            <li class="navbar-menu-item"><a href="logout.php">Logout</a></li>
+            <li class="navbar-menu-item"><a href="update_profile.php">Endre profil</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Logg ut</a></li>
         </ul>
     </div>
 </header>
 
 <div class="container my-5">
-    <h2>Oversikt</h2>
-    <a href="calendar.php "class="btn btn-primary" href="home.php" role="button">Book timer</a>
+    <h1>Oversikt</h1>
+    <a href="calendar.php "class="btn btn-primary" href="home.php" role="button">Book timer</a> <br>
 
     <br> 
-    <h1 class="overskrift">Dine timer</h1>
+    <h2 class="overskrift">Dine timer</h2>
     <table class="table">
         <thead>
             <tr>

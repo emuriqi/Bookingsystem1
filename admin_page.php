@@ -25,7 +25,7 @@ if(!isset($_SESSION['admin_name'])){
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="admin_page.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="update_profile.php"> <?php echo $lang['update_profile']; ?>
             </a></li>

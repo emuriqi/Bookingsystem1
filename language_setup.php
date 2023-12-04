@@ -1,5 +1,5 @@
 <?php
-// Start the session if not already started
+// Start sesjonen hvis den allerede ikke er startet
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,7 +9,7 @@ if (isset($_GET['lang'])) {
 }
 
 if (!isset($_SESSION['lang'])) {
-    $_SESSION['lang'] = 'no'; // default language
+    $_SESSION['lang'] = 'no'; 
 }
 
 include "lang." . $_SESSION['lang'] . ".php";

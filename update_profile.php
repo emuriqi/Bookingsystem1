@@ -15,7 +15,7 @@ if(isset($_POST['update_profile'])){
    $about_me = isset($_POST['about_me']) ? mysqli_real_escape_string($conn, $_POST['about_me']) : '';
    $availability = isset($_POST['availability']) ? mysqli_real_escape_string($conn, $_POST['availability']) : '';
    
-   // Update the database with the new textarea data, if they are not empty.
+   // Oppdatere databasen med nye tekstområdedata, hvis de ikke er tomme.
    if($about_me !== '' || $availability !== ''){
        mysqli_query($conn, "UPDATE `user_form` SET about_me = '$about_me', availability = '$availability' WHERE user_id = '$user_id'") or die('query failed');
    }
@@ -74,7 +74,7 @@ if(isset($_POST['update_profile'])){
 <header class="navbar">
     <!-- Navigasjonsbar med lenker -->
     <div class="navbar-container">
-        <a href="admin_page.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="update_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
@@ -130,7 +130,7 @@ if(isset($_POST['update_profile'])){
             <textarea id="availability" name="availability" rows="10" cols="50"><?php echo isset($fetch['availability']) ? $fetch['availability'] : ''; ?></textarea>
          </div>
       </div>
-      <input type="submit" value="update profile" name="update_profile" class="btn">
+      <input type="submit" value="Oppdater profil" name="update_profile" class="btn">
 <a href="admin_page.php" class="delete-btn">Tilbake</a>
    </form>
 </div>

@@ -20,6 +20,5 @@ $lang = array(
     'your_appointments' => 'Dine Timer',
     'set_availability' => 'Sett Inn Tilgjenglighet',
     'chat' => 'Chat'
-    // ... andre nødvendige oversettelser
 );
 ?>

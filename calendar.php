@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // make sure no further processing is done after the redirect
+    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
  }
  
 
@@ -14,7 +14,7 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
         die("Connection failed: " . $mysqli->connect_error);
     }
 
-    // Getting teacher assistants
+    // Henter hjelpelærere
     $hjelpelærereOptions = "";
     $stmt = $mysqli->prepare("SELECT * FROM hjelpelærere");
     
@@ -27,7 +27,7 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
         $stmt->close();
     }
 
-    // Calendar building logic
+    // Kalenderbyggningslogikken
     $daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
     $firstDayOfMonth = mktime(0, 0, 0, $month, 1, $year);
     $numberDays = date('t', $firstDayOfMonth);
@@ -63,7 +63,7 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
         $currentDayRel = str_pad($currentDay, 2, "0", STR_PAD_LEFT);
         $date = "$year-$month-$currentDayRel";
         
-        // Here's the condition to check for past dates
+        // Her er tilstanden til å sjekke utløpte datoer
         if ($date < date('Y-m-d')) {
             $calendar .= "<td><h4>$currentDay</h4><button class='btn btn-danger btn-xs'>N/A</button></td>";
         } else {
@@ -103,15 +103,13 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
     <link rel="stylesheet" href="css/calendar.css">
 
     <title>Calendar Booking System</title>
-    <!-- Insert your CSS and JavaScript links here -->
 </head>
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">logo</a>
+        <a href="admin_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
-            <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
-            <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
+            <li class="navbar-menu-item"><a href="logout.php">Logg ut</a></li>
         </ul>
     </div>
 </header>   
@@ -128,7 +126,6 @@ function build_calendar($month, $year, $hjelpelærere_id = 0) {
                 echo build_calendar($month, $year, $hjelpelærere_id);
                 ?>
 
-                <!-- Navigation Buttons -->
                 <a class="btn btn-primary" href="?month=<?php echo date('m', mktime(0, 0, 0, $month - 1, 1, $year)); ?>&year=<?php echo date('Y', mktime(0, 0, 0, $month - 1, 1, $year)); ?>">Forrige Måned</a>
                 <a class="btn btn-primary" href="?month=<?php echo date("m"); ?>&year=<?php echo date("Y"); ?>">Nåværende Måned</a>
                 <a class="btn btn-primary" href="?month=<?php echo date("m", mktime(0, 0, 0, $month + 1, 1, $year)); ?>&year=<?php echo date("Y", mktime(0, 0, 0, $month + 1, 1, $year)); ?>">Neste Måned</a>

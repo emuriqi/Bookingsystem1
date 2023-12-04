@@ -55,7 +55,7 @@ if(isset($_POST['update_profile'])){
 <!-- Viser en navigasjonsbar med lenker for profiloppdatering og utlogging. -->
 <header class="navbar">
     <div class="navbar-container">
-        <a href="user_pages.php" class="navbar-logo">logo</a>
+        <a href="user_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="updateU_profile.php">Oppdater profil</a></li>
             <li class="navbar-menu-item"><a href="logout.php">Log ut</a></li>
@@ -104,7 +104,7 @@ if(isset($_POST['update_profile'])){
         <!-- Knapper for å sende inn skjemaet eller gå tilbake til brukersiden. -->
         <div class="btn-container">
             <input type="submit" value="update profile" name="updateU_profile" class="btn">
-            <a href="user_page.php" class="delete-btn">Tilbakr</a>
+            <a href="user_page.php" class="delete-btn">Tilbake</a>
         </div>
    </form>
 </body>

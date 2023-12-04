@@ -2,17 +2,17 @@
 session_start();
 include 'config.php'; 
 
-// Check if the user is not logged in, then redirect to the login page.
+// Sjekker hvis brukeren ikke er logget på, da blir brukeren omdirigert til login-siden
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');
     exit();
 }
 
-// Using 'user_id' as the session variable for the user's ID.
+// Bruker 'user_id' som sesjons variabelen til bruker's ID.
 if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
 } else {
-    // If user ID is not set, redirect to login or give an error
+    // Hvis brukerID ikke er satt, omdirigeres til login eller gir en error
     header('location:login_form.php');
     exit();
 }
@@ -30,7 +30,7 @@ if(isset($_SESSION['user_id'])){
 <body>
 <header class="navbar">
     <div class="navbar-container">
-        <a href="home.php" class="navbar-logo">Logo</a>
+        <a href="user_page.php" class="navbar-logo">UiA</a>
         <ul class="navbar-menu">
             <li class="navbar-menu-item"><a href="user_page.php">Hjem</a></li>
             <li class="navbar-menu-item"><a href="updateU_profile.php">Endre Profil</a></li>
@@ -40,11 +40,11 @@ if(isset($_SESSION['user_id'])){
 </header>
 
 <div class="container my-5">
-    <h2>Oversikt</h2>
-    <a href="calendar.php" class="btn btn-primary" role="button">Book timer</a>
+    <h1>Oversikt</h1>
+    <a href="calendar.php" class="btn btn-primary" role="button">Book timer</a> <br>
 
     <br> 
-    <h1 class="overskrift">Dine timer</h1>
+    <h2 class="overskrift">Dine timer</h2>
     <table class="table">
         <thead>
             <tr>
@@ -57,7 +57,7 @@ if(isset($_SESSION['user_id'])){
         </thead>
         <tbody>
             <?php 
-            // Query that selects only the bookings for the logged-in user
+            // Spørring som kun velger bestillingene for den påloggende brukeren
             $sql = "SELECT bookings.* FROM bookings 
         JOIN user_form ON bookings.email = user_form.email 
         WHERE user_form.user_id = ?";
