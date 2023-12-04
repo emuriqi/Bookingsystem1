@@ -1,10 +1,8 @@
 <?php
-session_start();
+session_start(); // Starter en ny sesjon eller fortsetter den eksisterende
 
 include 'language_setup.php';
-include 'config.php';  // Inkluderer konfigurasjonsfilen som sannsynligvis inneholder databasetilkoblingsinnstillinger
-
- // Starter en ny sesjon eller fortsetter den eksisterende
+include 'config.php';  
 
 // Hvis det ikke er satt noen sesjonsvariabel for admin_name, blir brukeren omdirigert til innloggingssiden
 if(!isset($_SESSION['admin_name'])){

@@ -1,12 +1,12 @@
 <?php
-session_start();
+session_start(); // Starter en ny sesjon eller fortsetter den eksisterende
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
     exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
  }
  
-
+//Lager kalenderen
 function build_calendar($month, $year, $hjelpelærere_id = 0) {
     $mysqli = new mysqli('localhost', 'root', '', 'user_db');
     

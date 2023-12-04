@@ -4,28 +4,33 @@ include 'emailValid.php';
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); 
+    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen.
  }
  
-
+//Variabler for dato, hjelpelærerID, meldingsvariabel for tilbakemeldinger og array for bestilte tidspunkter.
 $date = "";
 $hjelpelærere_id = "";
 $msg = "";
 $bookings = array();
 
+//Databasetilkoblingen.
 $mysqli = new mysqli('localhost', 'root', '', 'user_db');
 
+//Dersom tilbokbling mislykkes, avsluttes skriptet og det blir gitt feilmelding.
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
+//Sjekker om det er sendt med dato og hjelpelærerensID, og deretter henter de fra databasen.
 if (isset($_GET['date']) && isset($_GET['hjelpelærere_id'])) {
     $date = $_GET['date'];
     $hjelpelærere_id = $_GET['hjelpelærere_id'];
 
+    //Forbereder en SQL-spørring ved bruk av prepare-metoden som binder parameterne til spørringen.
     $stmt = $mysqli->prepare("SELECT * FROM bookings WHERE date = ? AND hjelpelærere_id = ?");
     $stmt->bind_param('si', $date, $hjelpelærere_id);
 
+    //Dersom spørringen blir vellykket hentes resultatene, og lest ved hjelp av while-løkken.
     if ($stmt->execute()) {
         $result = $stmt->get_result();
 
@@ -37,12 +42,14 @@ if (isset($_GET['date']) && isset($_GET['hjelpelærere_id'])) {
     }
 }
 
+//Sjekker om skjemaet er sendt med et parameter som heter "submit". Deretter hentes data fra skjemaet. 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $timeslot = $_POST['timeslot'];
     $hjelpelærere_id = $_POST['hjelpelærere_id'];
 
+    //Validering av inndata
     if (!is_valid_email($email)) {
         $msg = "<div class='alert alert-danger'>Ugyldig Email!.</div>";
     }
@@ -50,6 +57,8 @@ if (isset($_POST['submit'])) {
         $msg = "<div class='alert alert-danger'>Velg en hjelpelærer</div>";
     } elseif (in_array($timeslot, $bookings)) {
         $msg = "<div class='alert alert-danger'>Denne er allerede booket</div>";
+
+        //Dersom alt er riktig, forberedes SQL uttalelsen for å legge bestilling i databasen. Parametene bindes til sprringen ved hjelp av bind_param().
     } else {
         $stmt = $mysqli->prepare("INSERT INTO bookings (name, timeslot, email, date, hjelpelærere_id) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param('ssssi', $name, $timeslot, $email, $date, $hjelpelærere_id);

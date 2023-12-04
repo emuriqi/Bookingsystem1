@@ -12,6 +12,6 @@ include 'config.php';
     }
 
 header("location: oversikt.php");
-exit; 
+exit;
 
 ?>

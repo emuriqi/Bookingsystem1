@@ -40,7 +40,7 @@
 		<div class="message">
 			<p>
 				
-				<span><?php echo $row['name']; // This now fetches the user's name from the joined user_form table ?> :</span>
+				<span><?php echo $row['name']; // Henter brukenes navn fra tabell med brukerskjema.  ?> :</span>
 
 				<?php echo $row['message']; ?>
 			</p>
