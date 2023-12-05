@@ -9,10 +9,10 @@ if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
 
 if($_POST)
 {
-	$id=$_SESSION['id'];
+	$id=$_SESSION['user_id'];
     $msg=$_POST['msg'];
     
-	$sql="INSERT INTO `chat`(`id`, `message`) VALUES ('".$id."', '".$msg."')";
+	$sql="INSERT INTO `chat`(`user_id`, `message`) VALUES ('".$id."', '".$msg."')";
 
 	$query = mysqli_query($conn,$sql);
 	if($query)

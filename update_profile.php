@@ -9,8 +9,18 @@ if(!isset($_SESSION['admin_name'])){
 
 $user_id = $_SESSION['user_id'];  // Henter brukerens ID fra sesjonen.
 
+$fetch = array();
 // Sjekker om brukeren har sendt inn oppdateringsformularet.
 if(isset($_POST['update_profile'])){
+   $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE user_id = '$user_id'") or die('query failed');
+   if(mysqli_num_rows($select) > 0){
+      $fetch = mysqli_fetch_assoc($select);
+   } else {
+      // Håndter tilfeller der ingen rader blir returnert
+      echo "Ingen brukerdata funnet.";
+      exit;
+   }
+
    // Saniterer og lagrer brukerens inndata.
    // Oppdaterer brukerens navn og e-post i databasen.
    $about_me = isset($_POST['about_me']) ? mysqli_real_escape_string($conn, $_POST['about_me']) : '';
@@ -26,21 +36,24 @@ if(isset($_POST['update_profile'])){
    mysqli_query($conn, "UPDATE `user_form` SET name = '$update_name', email = '$update_email' WHERE user_id = '$user_id'") or die('query failed');
 
    // Håndterer oppdatering av brukerens passord.
-   $old_pass = $_POST['old_pass'];
-   $update_pass = mysqli_real_escape_string($conn, md5($_POST['update_pass']));
-   $new_pass = mysqli_real_escape_string($conn, md5($_POST['new_pass']));
-   $confirm_pass = mysqli_real_escape_string($conn, md5($_POST['confirm_pass']));
-   if(!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)){
-      if($update_pass != $old_pass){
-         $message[] = 'old password not matched!';
-      }elseif($new_pass != $confirm_pass){
-         $message[] = 'confirm password not matched!';
-      }else{
-         mysqli_query($conn, "UPDATE `user_form` SET password = '$confirm_pass' WHERE user_id = '$user_id'") or die('query failed');
-         $message[] = 'password updated successfully!';
-      }
-   }
+   $old_pass = $_POST['old_pass']; // Dette bør være passordet i klar tekst som brukeren oppgir
+$stored_pass = $fetch['password']; // Dette er det hashede passordet hentet fra databasen
 
+$update_pass = $_POST['update_pass']; // Det nye passordet i klar tekst
+$new_pass = $_POST['new_pass'];
+$confirm_pass = $_POST['confirm_pass'];
+
+if (!empty($update_pass) || !empty($new_pass) || !empty($confirm_pass)) {
+    if (!password_verify($update_pass, $stored_pass)) {
+        $message[] = 'old password not matched!';
+    } elseif ($new_pass != $confirm_pass) {
+        $message[] = 'confirm password not matched!';
+    } else {
+        $hashed_new_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+        mysqli_query($conn, "UPDATE `user_form` SET password = '$hashed_new_pass' WHERE user_id = '$user_id'") or die('query failed');
+        $message[] = 'password updated successfully!';
+    }
+}
    // Håndterer oppdatering av brukerens profilbilde.
    $update_image = $_FILES['update_image']['name'];
    $update_image_size = $_FILES['update_image']['size'];
