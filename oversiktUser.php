@@ -2,7 +2,7 @@
 session_start();
 include 'config.php'; 
 
-// Sjekker hvis brukeren ikke er logget på, da blir brukeren omdirigert til login-siden
+
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');
     exit();

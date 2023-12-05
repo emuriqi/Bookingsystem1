@@ -1,9 +1,9 @@
 <?php
-session_start(); // Starter en ny sesjon eller fortsetter den eksisterende
+session_start(); 
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
+    exit(); 
  }
  
 //Lager kalenderen

@@ -4,7 +4,7 @@ include 'emailValid.php';
 
 if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen.
+    exit(); 
  }
  
 //Variabler for dato, hjelpelærerID, meldingsvariabel for tilbakemeldinger og array for bestilte tidspunkter.

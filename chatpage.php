@@ -2,7 +2,7 @@
 	session_start();
 	if(!isset($_SESSION['admin_name']) && !isset($_SESSION['user_name'])){
 		header('location:login_form.php');
-		exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
+		exit(); 
 	 }
 	 
 	if(isset($_SESSION['user_id']))
@@ -40,7 +40,7 @@
 		<div class="message">
 			<p>
 				
-				<span><?php echo $row['name']; // Henter brukenes navn fra tabell med brukerskjema.  ?> :</span>
+				<span><?php echo $row['name'];  ?> :</span>
 
 				<?php echo $row['message']; ?>
 			</p>

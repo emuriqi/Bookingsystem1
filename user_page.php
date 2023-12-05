@@ -1,9 +1,9 @@
 <?php
-// Inkluderer konfigurasjonsfilen, som kan inneholde databasetilkoblingsdetaljer og andre innstillinger.
+
 include 'config.php';
 include 'language_setup.php';
 
-// Starter en ny eller fortsetter en eksisterende sesjon.
+
 
 // Sjekker om brukeren er logget inn. Hvis ikke, blir brukeren omdirigert til innloggingssiden.
 if(!isset($_SESSION['user_name'])){

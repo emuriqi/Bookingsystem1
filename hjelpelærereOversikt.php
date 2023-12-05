@@ -4,7 +4,7 @@ include 'config.php';
 
 if(!isset($_SESSION['user_name'])){
     header('location:login_form.php');
-    exit(); // Sørger for at ingen ytterligere behandling blir gjort etter omdirigeringen
+    exit();
  }
 
 ?>

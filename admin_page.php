@@ -1,5 +1,5 @@
 <?php
-session_start(); // Starter en ny sesjon eller fortsetter den eksisterende
+session_start(); 
 
 include 'language_setup.php';
 include 'config.php';  

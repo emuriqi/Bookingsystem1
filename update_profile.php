@@ -1,7 +1,8 @@
 <?php
-// Inkluderer konfigurasjonsfilen og starter sesjonen.
+
 include 'language_setup.php';
 include 'config.php';
+
 if(!isset($_SESSION['admin_name'])){
    header('location:login_form.php');
 }
