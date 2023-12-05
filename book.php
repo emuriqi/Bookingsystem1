@@ -13,7 +13,6 @@ $hjelpelærere_id = "";
 $msg = "";
 $bookings = array();
 
-//Databasetilkoblingen.
 $mysqli = new mysqli('localhost', 'root', '', 'user_db');
 
 //Dersom tilbokbling mislykkes, avsluttes skriptet og det blir gitt feilmelding.
@@ -21,7 +20,7 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-//Sjekker om det er sendt med dato og hjelpelærerensID, og deretter henter de fra databasen.
+//Sjekker om det er sendt med dato og hjelpelærerensID i URL.
 if (isset($_GET['date']) && isset($_GET['hjelpelærere_id'])) {
     $date = $_GET['date'];
     $hjelpelærere_id = $_GET['hjelpelærere_id'];
